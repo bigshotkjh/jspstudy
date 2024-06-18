@@ -9,7 +9,7 @@
 <body>
   <div>
   
-    <form method="post" action="/src/">
+    <form method="post" action="/ex1.jsp">
   
       <!-- 입력 상자 -->
       <div>아이디<br>
@@ -61,11 +61,7 @@
         <input type="text" name="phone" placeholder="전화번호 입력">
         <button>인증번호 받기</button><br>
         <input type="text" name="checkp" placeholder="인증번호 입력">
-        
       </div><br>
-      
-      
-      <!-- 서브밋 버튼 -->
       <button type="submit">가입하기</button>
   
     </form>
