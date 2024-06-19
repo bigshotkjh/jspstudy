@@ -51,13 +51,23 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Upload</display-name>
-    <servlet-name>Upload</servlet-name>
-    <servlet-class>pkg04_file.Upload</servlet-class>
+    <display-name>Upload1</display-name>
+    <servlet-name>Upload1</servlet-name>
+    <servlet-class>pkg04_file.Upload1</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Upload</servlet-name>
-    <url-pattern>/upload</url-pattern>
+    <servlet-name>Upload1</servlet-name>
+    <url-pattern>/upload1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Upload2</display-name>
+    <servlet-name>Upload2</servlet-name>
+    <servlet-class>pkg04_file.Upload2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Upload2</servlet-name>
+    <url-pattern>/upload2</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
