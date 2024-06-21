@@ -32,6 +32,11 @@ public class BookServiceImpl implements BookService {
     
     int bookNo = Integer.parseInt(request.getParameter("bookNo"));
     
+    if(request.getParameter("modifyResult") != null) {
+      int modifyResult = Integer.parseInt(request.getParameter("modifyResult"));
+      request.setAttribute("modifyMessage", modifyResult == 1 ? "수정되었습니다." : "수정되지 않았습니다.");
+    }
+    
     request.setAttribute("book", bookDAO.getBookByNo(bookNo));
     
     return new ActionForward("/book/detail.jsp", false);
@@ -60,7 +65,7 @@ public class BookServiceImpl implements BookService {
     // 실패하면 : /index.jsp     로 가기 위한 /index.do
     String path = request.getContextPath() + (result == 1 ? "/list.do" : "/index.do");
     
-    // 이동방식 : redirect (DML)
+    // 이동방식 : redirect (DML : INSERT, UPDATE, DELETE)
     return new ActionForward(path, true);
     
   }
@@ -74,9 +79,45 @@ public class BookServiceImpl implements BookService {
     // 데이터베이스에서 삭제
     int result = bookDAO.deleteBook(bookNo);
     
-    // 성공 / 실패 모두 /book/list.jsp 로 이동하기 위한 /list.do
+    // 성공/실패 모두 /book/list.jsp 로 이동하기 위한 /list.do
     
     return new ActionForward(request.getContextPath() + "/list.do?deleteResult=" + result, true);
+    
+  }
+  
+  @Override
+  public ActionForward editBook(HttpServletRequest request) {
+    
+    // 편집할 책의 정보를 JSP 로 전달하고 forward 한다.
+    
+    int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+    
+    request.setAttribute("book", bookDAO.getBookByNo(bookNo));
+    
+    return new ActionForward("/book/edit.jsp", false);
+    
+  }
+
+  @Override
+  public ActionForward modifyBook(HttpServletRequest request) {
+    
+    int book_no = Integer.parseInt(request.getParameter("bookNo"));
+    
+    // 수정할 책의 정보를 저장한 BookDTO 만들기
+    BookDTO book = BookDTO.builder()
+        .book_no(book_no)
+        .title(request.getParameter("title"))
+        .author(request.getParameter("author"))
+        .price(Integer.parseInt(request.getParameter("price")))
+        .build();
+    
+    // 수정
+    int result = bookDAO.updateBook(book);
+    
+    // 성공/실패 상관 없이 /book/detail.jsp 로 redirect 
+    // 성공/실패 여부를 전달해서 /book/detail.jsp 가 메시지를 출력할 수 있도록 처리
+    
+    return new ActionForward(request.getContextPath() + "/detail.do?bookNo=" + book_no + "&modifyResult=" + result, true);
     
   }
   
