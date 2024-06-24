@@ -6,12 +6,10 @@ import java.util.Map;
 import com.min.app.dto.BoardDTO;
 
 public interface BoardDAO {
-  List<BoardDTO> getBoardList(Map<String, Object> params);
   int getBoardCount();
-  BoardDTO getBoardByNo(int board_no);
+  List<BoardDTO> getBoardList(Map<String, Object> params);
+  BoardDTO getBoardByNo(int boardNo);
   int insertBoard(BoardDTO board);
   int updateBoard(BoardDTO board);
-  int deleteBoard(int board_no);
-  int deleteBoardList(String board_no_list);
-  void close() throws Exception;
+  int deleteBoard(int boardNo);
 }

@@ -1014,3 +1014,10 @@ INSERT INTO board_t (board_no, title, contents, create_dt, modify_dt) VALUES (99
 INSERT INTO board_t (board_no, title, contents, create_dt, modify_dt) VALUES (999, 'Overhold', 'Suite 91', '2024/05/17', '2024/02/28');
 INSERT INTO board_t (board_no, title, contents, create_dt, modify_dt) VALUES (1000, 'Hatity', 'PO Box 72223', '2024/06/17', '2023/07/14');
 COMMIT;
+
+SELECT board_no, title, contents, create_dt, modify_dt 
+  FROM (SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum, board_no, title, contents, create_dt, modify_dt
+          FROM board_t)
+ WHERE rnum BETWEEN 21 AND 40;
+
+DELETE FROM board_t WHERE board_no IN(1,2,3);
