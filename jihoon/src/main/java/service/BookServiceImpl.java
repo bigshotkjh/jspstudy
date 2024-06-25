@@ -52,9 +52,10 @@ public class BookServiceImpl implements BookService {
   public ActionForward registerBook(HttpServletRequest request) {
     
     // 요청 파라미터 (제목, 저자, 가격) 
-    String title = request.getParameter("title");
-    String author = request.getParameter("author");
-    int price = Integer.parseInt(request.getParameter("price"));
+    String name = request.getParameter("name");
+    int kor = Integer.parseInt(request.getParameter("kor"));
+    int eng = Integer.parseInt(request.getParameter("eng"));
+    int math = Integer.parseInt(request.getParameter("math"));
     //request에서 각 정보들 빼서 책만들어.
     // 데이터베이스로 전달할 형식인 BookDTO 타입의 객체 생성
     BookDTO book = BookDTO.builder()

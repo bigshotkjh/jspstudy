@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import service.BookService;
 import service.BookServiceImpl;
 
-public class StuController extends HttpServlet {
+public class BookController extends HttpServlet {
   
   private static final long serialVersionUID = 1L;
 

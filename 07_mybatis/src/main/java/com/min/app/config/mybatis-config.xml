@@ -22,7 +22,7 @@
   </environments>
   
   <mappers>
-    <mapper resource=""/>
-  </mappers> 
+    <mapper resource="com/min/app/dao/BoardMapper.xml"/>
+  </mappers>
   
 </configuration>
